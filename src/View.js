@@ -3,13 +3,15 @@ class View {
   constructor(game) {
     this.game = game;
   }
+
   regenerateTrack() {
-    // Сборка всего необходимого (герой, враг(и), оружие) 
+    // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
   }
+
   render() {
     // Тут всё рисуем.
-    this.regenerateTrack()
+    this.regenerateTrack();
     console.clear();
     console.log(this.track.join(''));
     console.log('\n'.repeat(2));

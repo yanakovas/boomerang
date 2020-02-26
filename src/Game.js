@@ -13,14 +13,16 @@ class Game {
     this.enemy = new Enemy();
     this.view = new View(this);
   }
+
   check() {
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
     }
   }
+
   play() {
     setInterval(() => {
-
+      // Let's play! 
     });
   }
 }
