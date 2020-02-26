@@ -1,7 +1,7 @@
 // Импортируем всё необходимое.
-const Hero = require('./gameModels/Hero');
-const Enemy = require('./gameModels/Enemy');
-const Boomerang = require('./gameModels/Boomerang');
+const Hero = require('./game-models/Hero');
+const Enemy = require('./game-models/Enemy');
+const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 
 // Основной класс игры.
