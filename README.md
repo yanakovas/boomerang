@@ -10,7 +10,7 @@
 >- `keypress` или `readline`
 >- `play-sound`
 
-<img src="readme-assets/xena.jpg" alt="drawing" width="500"/>
+<img src="readme-assets/xena.jpg" alt="drawing" width="700"/>
 
 
 *Начнём?*
