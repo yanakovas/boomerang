@@ -105,4 +105,4 @@ If you are done with this too, then you just have to turn on the creativity and 
 ### Conclusion
 Hopefully you've enjoyed this project because it was the most important goal! It is also important that you have practiced working with the database, designed the application using the OOP approach, thought out the logic of the game, worked with input/output, developed creative thinking and did it all, working in a team ❤
 
-[MVP]:(https://en.wikipedia.org/wiki/Minimum_viable_product)
+[MVP]: https://en.wikipedia.org/wiki/Minimum_viable_product
