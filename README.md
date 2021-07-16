@@ -31,7 +31,7 @@ Yes, you already have some project structure, template classes and methods. The 
 
 ### Release 1. Shall we model the logic of the game?
 
-Think about the logic of the game. First, think about what you want to get in the [MVP] (https://en.wikipedia.org/wiki/Minimum_viable_product). You don't need to write any code for this! Get together with your team and just brainstorm! Write down all the ideas on a piece of paper, draw pictures and diagrams! Think about what you want to get by the end of the working day.
+Think about the logic of the game. First, think about what you want to get in the [MVP]. You don't need to write any code for this! Get together with your team and just brainstorm! Write down all the ideas on a piece of paper, draw pictures and diagrams! Think about what you want to get by the end of the working day.
 
 - How will you draw yourself and the enemy?
 - How will the boomerang fly?
@@ -104,3 +104,5 @@ Everything is too simple for you? Have you already done everything that was requ
 If you are done with this too, then you just have to turn on the creativity and develop your game on your own! And then you can safely put it on a CD and sell it :)
 ### Conclusion
 Hopefully you've enjoyed this project because it was the most important goal! It is also important that you have practiced working with the database, designed the application using the OOP approach, thought out the logic of the game, worked with input/output, developed creative thinking and did it all, working in a team ❤
+
+[MVP]:(https://en.wikipedia.org/wiki/Minimum_viable_product)
