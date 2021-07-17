@@ -1,4 +1,4 @@
-// Враг.
+// Enemy.
 
 class Enemy {
   constructor() {
@@ -12,7 +12,7 @@ class Enemy {
   }
 
   moveLeft() {
-    // Идём влево.
+    // Going left.
     this.position -= 1;
   }
 
