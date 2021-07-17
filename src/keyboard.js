@@ -1,11 +1,11 @@
-// Умеешь работать с keypress? Попробуй разобраться в этом файле.
-// Вместо keypress можно использовать и стандартный readline.
-// Главное не используй всё вместе!
+// Can you work with keypress? Try to figure out what is going on in this file.
+// You can use good old readline instead of keypress.
+// But do not use them all together!
 
 const keypress = require('keypress');
 
-// Управление.
-// Настроим соответствия нажатий на клавиши и действий в игре.
+// Management.
+// Let's set up the correspondence between keystrokes and actions in the game.
 
 const keyboard = {
   q: () => console.log('q'),
@@ -16,17 +16,17 @@ const keyboard = {
   y: () => console.log('y'),
 };
 
-// Какая-то функция.
+// Some function.
 
 function runInteractiveConsole() {
   keypress(process.stdin);
   process.stdin.on('keypress', (ch, key) => {
     if (key) {
-      // Вызывает команду, соответствующую нажатой кнопке.
+      // it calls a method that corresponds to the pressed button.
       if (key.name in keyboard) {
         keyboard[key.name]();
       }
-      // Прерывание программы.
+      // program interruption.
       if (key.ctrl && key.name === 'c') {
         process.exit();
       }
@@ -35,6 +35,6 @@ function runInteractiveConsole() {
   process.stdin.setRawMode(true);
 }
 
-// Давай попробуем запустить этот скрипт!
+// Let's try to run this script!
 
 runInteractiveConsole();

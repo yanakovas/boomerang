@@ -1,6 +1,6 @@
-// Бумеранг является оружием.
-// В дальнейшем можно добавить другое оружие.
-// Тогда можно будет создать класс Weapon и воспользоваться наследованием!
+// Boomerang is a weapon.
+// In the future, you can add another weapon.
+// Then you can create a new class Weapon and use inheritance!
 
 class Boomerang {
   constructor() {
@@ -14,12 +14,12 @@ class Boomerang {
   }
 
   moveLeft() {
-    // Идём влево.
+    // Moving to the left.
     this.position -= 1;
   }
 
   moveRight() {
-    // Идём вправо.
+    // Moving to the right.
     this.position += 1;
   }
 }

@@ -1,4 +1,4 @@
-// Наш герой.
+// Our hero.
 
 class Hero {
   constructor({ position }) {
@@ -7,17 +7,17 @@ class Hero {
   }
 
   moveLeft() {
-    // Идём влево.
+    // Going left.
     this.position -= 1;
   }
 
   moveRight() {
-    // Идём вправо.
+    // Going right.
     this.position += 1;
   }
 
   attack() {
-    // Атакуем.
+    // Attacking the enemy.
     this.boomerang.fly();
   }
 

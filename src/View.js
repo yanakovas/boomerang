@@ -1,10 +1,10 @@
-// Сделаем отдельный класс для отображения игры в консоли.
+// Let's create a separate class for displaying the game in the console.
 
 class View {
   render() {
     const yourTeamName = 'Elbrus';
 
-    // Тут всё рисуем.
+    // Here we are drawing everything.
     console.clear();
     console.log(this.game.track.join(''));
     console.log('\n\n');
