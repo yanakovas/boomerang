@@ -8,7 +8,7 @@ const game = new Game({
   trackLength: 50,
 });
 
-const model = new Model();
+//const model = new Model();
 
 // Запуск игры.
 

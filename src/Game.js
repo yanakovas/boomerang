@@ -48,12 +48,14 @@ class Game {
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
       this.model.stopGame();
+      this.pushResults();
     }
 
     if (this.boomerang.position === this.enemy.position ||
       this.boomerang.position === this.enemy.position + 1|| 
       this.boomerang.position === this.enemy.position - 1) {
       this.enemy.die();
+      this.model.addPoints();
       this.boomerang.changeDirection();
       this.enemy = new Enemy();
     }
@@ -94,6 +96,7 @@ class Game {
   }
 
   play() {
+    this.model.setTime(Date.now());
     runInteractiveConsole(this.hero);
     setInterval(() => {
       // Let's play!
@@ -101,8 +104,18 @@ class Game {
       this.enemiesMove();
       this.check();
       // this.keyboardCheck();
-      this.view.render(this.track);
+      this.view.render(this.track, this.model.getPoints(), this.model.getTime());
     }, 30);
+  }
+
+  pushResults() {
+    const gameDuration = ((Date.now() - this.model.getTime()) / 1000).toFixed(1);
+    // const name = readlineSync.question('Choose name: ');
+    const points = this.model.getPoints();
+    // console.log(name);
+    console.log(points);
+    console.log(gameDuration);
+    process.exit();
   }
 
   run() {
