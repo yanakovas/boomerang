@@ -1,9 +1,21 @@
+const { Statistic } = require('../db/models');
+
 class Model {
   #page = 'enter-name';
   #name = '';
   #points = 0;
-  #gameDuration;
   #time;
+
+
+  async pushResults() {
+    const gameDuration = ((Date.now() - this.#time) / 1000).toFixed(1);
+    // const name = readlineSync.question('Choose name: ');
+    const points = this.#points;
+
+    await Statistic.create({ name: "XXX", enemieKilled: points, point: points, timeGame: gameDuration });
+    // console.log(name);
+    process.exit();
+  }
 
   setTime(time) {
     this.#time = time; 
