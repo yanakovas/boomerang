@@ -6,11 +6,23 @@ class Boomerang {
   constructor() {
     this.skin = '🌀';
     this.position = 0;
+    this.direction = 0;
+  }
+
+  changeDirection() {
+    this.direction = (this.direction === 1) ? -1 : 1;
   }
 
   fly() {
-    this.moveRight();
-    this.moveLeft();
+    this.direction = 1;
+  }
+
+  stop() {
+    this.direction = 0;
+  }
+
+  move() {
+    this.position += this.direction;
   }
 
   moveLeft() {

@@ -3,7 +3,8 @@
 class Enemy {
   constructor() {
     this.generateSkin();
-    this.position = 2;
+    this.position = 50;
+    this.level = Math.floor(Math.random() * 10);
   }
 
   generateSkin() {
@@ -13,7 +14,8 @@ class Enemy {
 
   moveLeft() {
     // Идём влево.
-    this.position -= 1;
+    let moveProbability = Math.floor(Math.random() * 10);
+    if (moveProbability > this.level) this.position -= 1;
   }
 
   die() {
