@@ -11,6 +11,7 @@ class Hero {
 
   catchBoomerang() {
     this.boomerang.stop();
+    this.boomerang.position = this.position - 1;
     this.hasBoomerang = true;
   }
 
@@ -41,8 +42,6 @@ class Hero {
 
   die() {
     this.skin = '💀';
-    console.log('YOU ARE DEAD!💀');
-    //process.exit();
   }
 }
 

@@ -1,4 +1,4 @@
-const { Statistic } = require('../db/models');
+const { Statistic, sequelize } = require('../db/models');
 
 class Model {
   #page = 'enter-name';
@@ -6,15 +6,39 @@ class Model {
   #points = 0;
   #time;
 
-
   async pushResults() {
     const gameDuration = ((Date.now() - this.#time) / 1000).toFixed(1);
-    // const name = readlineSync.question('Choose name: ');
     const points = this.#points;
 
-    await Statistic.create({ name: "XXX", enemieKilled: points, point: points, timeGame: gameDuration });
-    // console.log(name);
-    process.exit();
+    let scores = {
+      name: this.#name, 
+      enemieKilled: points, 
+      point: points, 
+      timeGame: gameDuration,
+    }
+    
+    await Statistic.create(scores);
+
+    const results = await Statistic.findAll({
+      raw: true,
+      attributes: { 
+        exclude: ['id', 'createdAt', 'updatedAt'] 
+      },
+      order: [
+        ['point', 'DESC'],
+      ],
+      limit: 5,
+    });
+    
+    return [scores, results];
+  }
+
+  setName(name) {
+    this.#name = name;
+  }
+
+  getName() {
+    return this.#name;
   }
 
   setTime(time) {
@@ -36,10 +60,6 @@ class Model {
   startGame (name) {
     this.#name = name;
     this.#page = 'game';
-  }
-
-  stopGame () {
-    this.#page = 'results';
   }
   
   getPage() {

@@ -8,8 +8,10 @@ const game = new Game({
   trackLength: 50,
 });
 
-//const model = new Model();
-
 // Запуск игры.
+// async function run() {
+//   const username = await game.getName();
+//   game.play(username);
+// }
 
-game.play();
+game.play('Yasha');

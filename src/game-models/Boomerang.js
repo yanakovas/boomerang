@@ -9,8 +9,8 @@ class Boomerang {
     this.direction = 0;
   }
 
-  changeDirection() {
-    this.direction = (this.direction === 1) ? -1 : 1;
+  getBack() {
+    this.direction = -1;
   }
 
   fly() {
@@ -23,16 +23,6 @@ class Boomerang {
 
   move() {
     this.position += this.direction;
-  }
-
-  moveLeft() {
-    // Идём влево.
-    this.position -= 1;
-  }
-
-  moveRight() {
-    // Идём вправо.
-    this.position += 1;
   }
 }
 

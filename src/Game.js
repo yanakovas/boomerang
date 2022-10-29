@@ -2,7 +2,7 @@
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
 // const keypress = require('keypress');
-const readlineSync = require('readline-sync');
+const { Input } = require('enquirer');
 const keypress = require('keypress');
 
 const runInteractiveConsole = require('./keyboard');
@@ -13,9 +13,6 @@ const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const Model = require('./Model');
 
-// Основной класс игры.
-// Тут будут все настройки, проверки, запуск.
-
 class Game {
   constructor({ trackLength }) {
     this.view = new View();
@@ -23,13 +20,24 @@ class Game {
 
     this.trackLength = trackLength;
     this.boomerang = new Boomerang();
-    this.hero = new Hero(this.boomerang); // Герою можно аргументом передать бумеранг.
+    this.hero = new Hero(this.boomerang);
     this.enemy = new Enemy();
     
     this.track = [];
     this.regenerateTrack();
+    this.gameCycle = null;
   }
 
+  async getName() {
+    const prompt = new Input({
+      name: 'username',
+      message: 'What is your username?',
+    });
+  
+    const username = await prompt.run();
+    return username;
+  }
+  
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
     // в единую структуру данных
@@ -39,72 +47,58 @@ class Game {
     // Put enemy
     this.track[this.enemy.position] = this.enemy.skin;
     // Boomerang
-    this.boomerang.move();
     this.track[this.boomerang.position] = this.boomerang.skin;
   }
 
   check() {
-    // Hero die
-    if (this.hero.position === this.enemy.position) {
+    let heroDied = this.hero.position === this.enemy.position;
+    if (heroDied) {
       this.hero.die();
-      this.model.stopGame();
-      this.model.pushResults();
+      this.stop();
     }
 
-    if (this.boomerang.position === this.enemy.position ||
-      this.boomerang.position === this.enemy.position + 1|| 
-      this.boomerang.position === this.enemy.position - 1) {
+    let enemyHit = this.boomerang.position === this.enemy.position ||
+    this.boomerang.position === this.enemy.position + 1|| 
+    this.boomerang.position === this.enemy.position - 1;
+    if (enemyHit) {
       this.enemy.die();
+      this.boomerang.getBack();
       this.model.addPoints();
-      this.boomerang.changeDirection();
       this.enemy = new Enemy();
     }
 
-    if (this.boomerang.position === this.hero.position) {
+    let caughtBoomerang = this.boomerang.position === this.hero.position;
+    if (caughtBoomerang) {
       this.hero.catchBoomerang();
     }
-
   }
 
-  enemiesMove() {
+  moveGameObjects() {
     this.enemy.moveLeft();
+    this.boomerang.move();
   }
 
-  keyboardCheck() {
+  async stop() {
+    clearInterval(this.gameCycle); 
+    this.view.renderDeadScreen();
     
-    // keypress(process.stdin);
-    // process.stdin.on('keypress', (ch, key) => {
-      
-    //   if (key) {
-    //     console.log(key.name)
-    //     if (key.name === 'd') {
-    //       console.log(key.name);
-    //       this.hero.moveRight();
-    //     }
-    //     if (key.name === 'a') {
-    //       console.log(key.name);
-    //       this.hero.moveLeft();
-    //     }
-    //   }
-    // });
-    // process.stdin.setRawMode(true);
-    // let key = readlineSync.keyIn('', {hideEchoBack: true});
-    // console.log(key);
-    // if (key === 'd') this.hero.moveRight();
-    // if (key === 'a') this.hero.moveLeft();
-    //if (key === ' ') {this.boomerang.fly()};
+    const results = await this.model.pushResults();
+    this.view.renderResults(results);
+
+    process.exit();
   }
 
-  play() {
+  play(username) {
     this.model.setTime(Date.now());
+    this.model.setName(username);
+
     runInteractiveConsole(this.hero);
-    setInterval(() => {
-      // Let's play!
+
+    this.gameCycle = setInterval(() => {
+      this.view.render(this.track, this.model.getPoints(), this.model.getTime(), this.model.getName());
       this.regenerateTrack();
-      this.enemiesMove();
+      this.moveGameObjects();
       this.check();
-      // this.keyboardCheck();
-      this.view.render(this.track, this.model.getPoints(), this.model.getTime());
     }, 30);
   }
 
@@ -116,11 +110,11 @@ class Game {
         return this.run();
       }
       case 'game': {
-        
         return this.play();
       }
       case 'results': {
-        this.view.renderResults();
+        console.log('Wheeeeeeee');
+        return this.view.renderResults();
       }
     }
   }

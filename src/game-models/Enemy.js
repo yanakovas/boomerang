@@ -13,14 +13,14 @@ class Enemy {
   }
 
   moveLeft() {
-    // Идём влево.
-    let moveProbability = Math.floor(Math.random() * 10);
+    let moveProbability = Math.floor(Math.random() * 20);
     if (moveProbability > this.level) this.position -= 1;
   }
 
   die() {
+    this.skin = '💥';
     this.position = '?';
-    console.log('Enemy is dead!');
+    //console.log('Enemy is dead!');
   }
 }
 
