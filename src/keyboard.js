@@ -20,9 +20,6 @@ function runInteractiveConsole(hero) {
     a: () => hero.moveLeft(),
   };
 
-// Какая-то функция.
-
-
   keypress(process.stdin);
   process.stdin.on('keypress', (ch, key) => {
     if (key) {
