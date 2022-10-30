@@ -26,6 +26,7 @@ class Model {
       },
       order: [
         ['point', 'DESC'],
+        ['timeGame', 'ASC'],
       ],
       limit: 5,
     });

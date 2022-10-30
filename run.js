@@ -14,4 +14,8 @@ const game = new Game({
 //   game.play(username);
 // }
 
-game.play('Yasha');
+const username = process.argv
+  .slice(2)
+  .join(' ');
+
+game.play(username);
