@@ -32,10 +32,10 @@ class View {
     let [scores, results] = array;
     console.clear();
     console.log('Your scores:');
-    console.log(`${scores.name} -- ${scores.point} points -- ${scores.timeGame} s\n\n`);
+    console.log(`${scores.name} -- ${scores.point} points -- ${scores.enemieKilled} killed -- ${scores.timeGame} s\n\n`);
     console.log('Five best ninjas');
     results.forEach((item, i) => {
-      console.log(`${i + 1}. ${item.name} -- ${item.point} points -- ${item.timeGame} s`)
+      console.log(`${i + 1}. ${item.name} -- ${item.point} points -- ${item.enemieKilled} killed -- ${item.timeGame} s`)
     });
     console.log('\n\n\n\n');
   }

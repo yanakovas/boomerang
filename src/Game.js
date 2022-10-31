@@ -63,7 +63,7 @@ class Game {
     if (enemyHit) {
       this.enemy.die();
       this.boomerang.getBack();
-      this.model.addPoints();
+      this.model.addPoints(Math.floor(this.hero.position / (this.trackLength / 10)) + 1);
       this.enemy = new Enemy();
     }
 

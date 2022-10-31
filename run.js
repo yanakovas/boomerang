@@ -13,9 +13,8 @@ const game = new Game({
 //   const username = await game.getName();
 //   game.play(username);
 // }
+// run();
 
-const username = process.argv
-  .slice(2)
-  .join(' ');
+const username = process.argv.slice(2).join(' ') || 'NoName';
 
 game.play(username);

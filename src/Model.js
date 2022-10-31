@@ -3,16 +3,18 @@ const { Statistic, sequelize } = require('../db/models');
 class Model {
   #page = 'enter-name';
   #name = '';
+  #enemiesKilled = 0;
   #points = 0;
   #time;
 
   async pushResults() {
     const gameDuration = ((Date.now() - this.#time) / 1000).toFixed(1);
     const points = this.#points;
+    const enemies = this.#enemiesKilled;
 
     let scores = {
       name: this.#name, 
-      enemieKilled: points, 
+      enemieKilled: enemies, 
       point: points, 
       timeGame: gameDuration,
     }
@@ -54,8 +56,9 @@ class Model {
     return this.#points;
   }
 
-  addPoints() {
-    this.#points++;
+  addPoints(points) {
+    this.#enemiesKilled++;
+    this.#points += points;
   }
 
   startGame (name) {
